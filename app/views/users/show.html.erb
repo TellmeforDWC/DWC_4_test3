@@ -7,7 +7,7 @@
 
 
     <!--投稿一覧-->
-    <div class="col-md-8">
+    <div class="col-md-8 offset-md-1">
     <h3>Books</h3>
       <table>
         <thead>
@@ -20,7 +20,7 @@
         <tbody>
           <% @books.each do |books| %>
           <tr>
-            <td><%= attachment_image_tag @user, :profile_image, size:"30x30", fallback:  "/assets/no_image.jpg" %></td>
+            <td><%= link_to attachment_image_tag(@user, :profile_image, size:"30x30", fallback:  "/assets/no_image.jpg"), user_path(@user.id) %></td>
             <td><%= link_to "#{books.title}", book_path(books.id) %></td>
             <td><%= books.body %></td>
           </tr>

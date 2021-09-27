@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_09_25_092229) do
     t.string "profile_image_id"
     t.text "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
