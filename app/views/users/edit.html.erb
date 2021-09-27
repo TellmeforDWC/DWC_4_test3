@@ -1,0 +1,19 @@
+<% if @user.errors.any? %>
+  <%= @user.errors.count %> errors prohibited this obj from being saved:
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+<% end %>
+
+<!--投稿フォーム-->
+<h3>User Info</h3>
+<%= form_with model:@user, local: true do |f| %>
+  <p>Name</p>
+  <p><%= f.text_field :name %></p>
+  <p>Image</p>
+  <%= f.attachment_field :profile_image %>
+  <p>Introduction</p>
+  <p><%= f.text_area :introduction %></p>
+  <p><%= f.submit "Update User" %></p>
+<% end %>
+<!--投稿フォーム-->

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <script src="https://kit.fontawesome.com/a6e197d565.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <!-- ナビゲーションバーの定義 -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <!-- タイトル -->
+          <a class="navbar-brand" href="/">Bookers2</a>
+          <!-- ハンバーガーメニューの設定 -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+          </button>
+            <!-- ナビゲーションメニューの内容 -->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <% if user_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to "Home", user_path(current_user.id), class: "link fas fa-home" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Users", users_path, class: "link fas fa-users" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Books", books_path, class: "link fas fa-book-open" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "logout", destroy_user_session_path, method: :delete, class: "link fas fa-sign-out-alt" %>
+                  </li>
+                <% else %>
+                  <li class="nav-item">
+                    <%= link_to "Home", root_path, class: "link fas fa-home" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "About", about_us_path, class: "link fas fa-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "sign up", new_user_registration_path, class: "link fas fa-user-plus" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "login", new_user_session_path, class: "link fas fa-sign-in-alt" %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="notification">
+     <% flash.each do | message_type, message | %>
+     <%= content_tag :div, message, class: message_type %>
+     <% end %>
+    </div>
+
+    <%= yield %>
+
+    <footer>
+      <div class="row">
+        <div class="col-12">
+          CopyRight Infratop.inc
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
